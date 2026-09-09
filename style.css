@@ -1,0 +1,26 @@
+.main_container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+
+.human,
+.computer{
+    text-align: center;
+    flex-grow: 1;
+}
+
+.human{
+    background-color: aliceblue;
+}
+
+.computer{
+    background-color: blanchedalmond;
+}
+
+.selection{
+    display: flex;;
+    justify-content: center;
+    padding: 20px;
+}

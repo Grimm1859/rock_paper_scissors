@@ -1,3 +1,4 @@
+
 let computerNumber;
 let computerChoice;
 let humanChoice;
@@ -24,9 +25,18 @@ switch (computerNumber){
 }
 }
 
-function getHumanChoice(){
-    humanChoice = prompt("What do you choose?")
-}
+const btn = document.querySelectorAll('.choices');
+
+btn.forEach((btn) => {
+    btn.addEventListener('click', (event) => {
+        humanChoice = event.target.textContent.toLowerCase();
+        roundStart();
+})
+})
+
+
+const humanScoreContainer = document.querySelector('#humanScore');
+const computerScoreContainer = document.querySelector('#computerScore');
 
 function getHumanNumber(){
 switch (humanChoice){
@@ -47,7 +57,6 @@ switch (humanChoice){
 function roundStart(){
     getComputerNumber();
     getComputerChoice();
-    getHumanChoice();
     getHumanNumber();
     console.log("Computer's choice is " + computerChoice + ", Your choice is " + humanChoice );
     if(humanNumber - computerNumber == 1 || humanNumber - computerNumber ==-2 ){
@@ -62,15 +71,25 @@ function roundStart(){
     nextRound();
 }
 
-roundStart();
+let tryagain;
 
 function nextRound(){
-    console.log("Current score is: You: " + humanScore + " Computer: " + computerScore)
+    humanScoreContainer.textContent = humanScore;
+    computerScoreContainer.textContent = computerScore;
     if(humanScore == 5){
-        console.log("You've won the game. Congrats!")
+        alert("You've won the game. Congrats!");
+        nextGame();
     } else if (computerScore == 5){
-        console.log("You've lost the game. Try again?")
-    } else {
-        roundStart();
+        tryagain = prompt("You've lost the game. Try again?");
+        if(tryagain == "yes"){
+        nextGame();
     }
+    }
+}
+
+function nextGame(){
+        humanScore = 0;
+        computerScore = 0;
+        humanScoreContainer.textContent = humanScore;
+        computerScoreContainer.textContent = computerScore;
 }
